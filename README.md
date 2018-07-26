@@ -10,17 +10,25 @@ docker run -d -v /var/run/docker.sock:/var/run/docker.sock -p 2376:2375 bobrik/s
 - mysql启动命令：
 
 ```bash
-docker run -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 --name mysql -d mysql
+docker run -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 --name mysql -d mysql:5.7.20
 ```
 
 - redis启动命令：
 
 ```bash
 docker run -p 6379:6379 --name redis -d redis
+
+docker run -p 6379:6379 --name redis -d redis --requirepass "123456"
 ```
 
 - zookeeper启动命令
 
 ```bash
 docker run -p 2181:2181 -p 2888:2888 -p 3888:3888 --name zookeeper -d zookeeper
+```
+
+- consul
+
+```
+docker run -d -p 8500:8500 --name consul  consul agent -server -bootstrap -client=0.0.0.0 -ui
 ```
