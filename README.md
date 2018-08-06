@@ -32,3 +32,33 @@ docker run -p 2181:2181 -p 2888:2888 -p 3888:3888 --name zookeeper -d zookeeper
 ```
 docker run -d -p 8500:8500 --name consul  consul agent -server -bootstrap -client=0.0.0.0 -ui
 ```
+
+- influxdb
+
+```
+docker pull influxdb:1.6
+
+docker run -p 8086:8086 --name influxdb -d influxdb:1.6
+
+docker run -p 8086:8086 -p 8083:8083 -e ADMIN_USER="root" -e INFLUXDB_INIT_PWD="123456" -e PRE_CREATE_DB="metrics" --name influxdb -d influxdb:1.6
+
+// 创建数据库 metrics为数据库名字
+curl -G -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE metrics"
+
+```
+
+- grafana
+
+```
+// 默认账号 admin 密码 admin
+docker run -d --name=grafana -p 3000:3000 grafana/grafana
+
+```
+
+- prometheus
+
+```
+docker pull prom/prometheus
+
+docker run --name prometheus -p 9090:9090 -d prom/prometheus
+```
