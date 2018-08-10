@@ -61,4 +61,7 @@ docker run -d --name=grafana -p 3000:3000 grafana/grafana
 docker pull prom/prometheus
 
 docker run --name prometheus -p 9090:9090 -d prom/prometheus
+
+docker run -p 9090:9090 -v /tmp/prometheus-data:/prometheus-data prom/prometheus
+
 ```
