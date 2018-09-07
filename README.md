@@ -13,6 +13,10 @@ docker run -d -v /var/run/docker.sock:/var/run/docker.sock -p 2376:2375 bobrik/s
 docker run -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 --name mysql -d mysql:5.7.20
 ```
 
+```bash
+docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:10.5
+```
+
 - redis启动命令：
 
 ```bash
