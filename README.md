@@ -36,7 +36,7 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v porta
 - mysql启动命令：
 
 ```bash
-docker run -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 --name mysql -d mysql:5.7.20
+docker run -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306  --restart=always --name mysql -d mysql:5.7.20
 ```
 
 - postgresql
