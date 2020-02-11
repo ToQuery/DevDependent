@@ -71,6 +71,22 @@ docker run -p 6379:6379 --name redis -d redis
 docker run -p 6379:6379 --name redis -d redis --requirepass "123456"
 ```
 
+## 文件服务
+
+### minio 服务
+
+```
+docker run -p 9000:9000 -itd --name minio \
+  -e "MINIO_ACCESS_KEY=admin" \
+  -e "MINIO_SECRET_KEY=admin123" \
+  minio/minio server /data
+```
+
+## 账号服务 User Account and Authentication (UAA) Server
+
+- (keycloak)[https://github.com/keycloak/keycloak]
+- (cloudfoundry/uaa)[https://github.com/cloudfoundry/uaa]
+
 ## 其他相关服务
 
 - zookeeper启动命令
@@ -101,6 +117,11 @@ docker run -d --name=grafana -p 3000:3000 grafana/grafana
 docker pull prom/prometheus
 
 docker run --name prometheus -p 9090:9090 -d prom/prometheus
+
+docker run \
+    -p 9090:9090 \
+    -v /tmp/prometheus.yml:/etc/prometheus/prometheus.yml \
+    prom/prometheus
 
 docker run -p 9090:9090 -v /tmp/prometheus-data:/prometheus-data prom/prometheus
 ```
