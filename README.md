@@ -44,7 +44,7 @@ docker run -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306  --restart=always --name m
 ```bash
 docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:10.5
 
-docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 54321:5432 -d postgres:9.4.19
+docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:9.6
 ```
 
 
