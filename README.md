@@ -20,7 +20,7 @@ docker run -d -v /var/run/docker.sock:/var/run/docker.sock -p 2376:2375 bobrik/s
 //  "insecure-registries" : ["xxx.abc.com"],
 //  镜像加速仓库
 //  "registry-mirrors": ["http://xxxx.m.daocloud.io"],
-    "hosts":["tcp://0.0.0.0:2375","unix:///var/run/docker.sock"],
+    "hosts":["tcp://0.0.0.0:2375","unix:///var/run/docker.sock"]
 }
 ```
 
@@ -47,6 +47,12 @@ docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:
 docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:9.6
 ```
 
+- neo4j
+
+```bash
+docker run --publish=7474:7474 --publish=7687:7687 -e 'NEO4J_AUTH=neo4j/secret' neo4j:4.3.6
+```
+
 
 - influxdb
 
@@ -68,7 +74,7 @@ curl -G -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE m
 ```bash
 docker run -p 6379:6379 --name redis -d redis
 
-docker run -p 6379:6379 --name redis -d redis --requirepass "123456"
+docker run -p 6379:6379 --name redis -d redis:5.0.7 --requirepass "123456"
 ```
 
 ## 文件服务
@@ -100,6 +106,11 @@ docker run -p 2181:2181 -p 2888:2888 -p 3888:3888 --name zookeeper -d zookeeper
 ```bash
 docker run -d -p 8500:8500 --name consul  consul agent -server -bootstrap -client=0.0.0.0 -ui
 ```
+
+```bash
+docker run -d --name rrshare -p 3001:3001 -v ~/Downloads:/opt/work/store oldiy/rrshare64:latest
+```
+
 
 
 ## 监控相关服务
