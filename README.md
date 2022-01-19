@@ -37,6 +37,14 @@ docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v porta
 
 ```bash
 docker run -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306  --restart=always --name mysql -d mysql:5.7.20
+
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'xxx' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+```
+
+```bash
+docker run -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306  --restart=always --name mysql8 -d mysql:8.0.27
 ```
 
 - postgresql
@@ -45,6 +53,13 @@ docker run -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306  --restart=always --name m
 docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:10.5
 
 docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:9.6
+```
+
+- mongodb
+
+```bash
+docker pull mongo:5.0.5
+docker run --name mongodb -e MONGO_INITDB_DATABASE=admin -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=123456 -p 27017:27017 -d mongo:5.0.5
 ```
 
 - neo4j
