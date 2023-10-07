@@ -2,6 +2,22 @@
 
 本文档主要介绍相关基于docker的开发依赖服务，包含容器管理、数据库、缓存、监控等。不断完善。。。
 
+
+## Docker 镜像加速
+
+[Gist](https://gist.github.com/y0ngb1n/7e8f16af3242c7815e7ca2f0833d3ea6)
+
+```json
+{
+    "registry-mirrors": [
+        "https://docker.m.daocloud.io",
+        "https://dockerproxy.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://docker.nju.edu.cn"
+    ]
+}
+```
+
 ## 容器相关服务
 
 - ~~Linux(Mac)下启用dockerAPI，基于docker.sock~~（推荐下面的方式）
@@ -50,6 +66,10 @@ docker run -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306  --restart=always --name m
 - postgresql
 
 ```bash
+docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:16
+
+docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:14
+
 docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:10.5
 
 docker run --name postgres -e POSTGRES_PASSWORD=123456 -p 5432:5432 -d postgres:9.6
@@ -90,6 +110,9 @@ curl -G -XPOST http://localhost:8086/query --data-urlencode "q=CREATE DATABASE m
 docker run -p 6379:6379 --name redis -d redis
 
 docker run -p 6379:6379 --name redis -d redis:5.0.7 --requirepass "123456"
+
+
+docker run -p 6379:6379 --name redis -d redis:7 --requirepass "123456"
 ```
 
 ## 文件服务
